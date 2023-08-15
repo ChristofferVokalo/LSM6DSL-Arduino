@@ -18,7 +18,7 @@ lsm6dsl_status_t LSM6DSLCore::beginCore() {
     lsm6dsl_status_t returnStatus = IMU_SUCCESS;
 
     if (opMode == LSM6DSL_MODE_I2C) {
-        Wire.begin();
+        Wire.begin(41,42);
     } else if (opMode == LSM6DSL_MODE_SPI) {
         SPI.begin();
         SPI.setClockDivider(SPI_CLOCK_DIV4);
@@ -34,7 +34,7 @@ lsm6dsl_status_t LSM6DSLCore::beginCore() {
     uint8_t result;
     readRegister(&result, LSM6DSL_WHO_AM_I_REG);
 
-    if (result != 0x6A) {
+    if (result != 0x6B) {
         returnStatus = IMU_HW_ERROR;
     }
 
