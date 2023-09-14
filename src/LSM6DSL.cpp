@@ -1,5 +1,5 @@
 #include "LSM6DSL.h"
-
+#include "vokalo_pins.h"
 
 LSM6DSLCore::LSM6DSLCore(uint8_t addr):
  opMode(LSM6DSL_MODE_I2C),
@@ -18,7 +18,7 @@ lsm6dsl_status_t LSM6DSLCore::beginCore() {
     lsm6dsl_status_t returnStatus = IMU_SUCCESS;
 
     if (opMode == LSM6DSL_MODE_I2C) {
-        Wire.begin(41,42);
+        Wire.begin(IMU_AMP_RTC_SDA,IMU_AMP_RTC_SCL);
     } else if (opMode == LSM6DSL_MODE_SPI) {
         SPI.begin();
         SPI.setClockDivider(SPI_CLOCK_DIV4);
